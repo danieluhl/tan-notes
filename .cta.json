@@ -1,0 +1,24 @@
+{
+  "projectName": "tanstack-start-1",
+  "mode": "file-router",
+  "typescript": true,
+  "tailwind": true,
+  "packageManager": "npm",
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "biome",
+    "cloudflare",
+    "start",
+    "form",
+    "oRPC",
+    "tanstack-query",
+    "shadcn",
+    "store",
+    "storybook",
+    "t3env",
+    "table",
+    "db"
+  ]
+}
