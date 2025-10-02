@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NotesIndexRouteImport } from './routes/notes/index'
+import { Route as NotesNoteIdRouteImport } from './routes/notes/$noteId'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo.tanstack-query'
 import { Route as DemoTableRouteImport } from './routes/demo.table'
 import { Route as DemoStorybookRouteImport } from './routes/demo.storybook'
@@ -29,6 +31,16 @@ import { Route as ApiRpcSplatRouteImport } from './routes/api.rpc.$'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotesIndexRoute = NotesIndexRouteImport.update({
+  id: '/notes/',
+  path: '/notes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotesNoteIdRoute = NotesNoteIdRouteImport.update({
+  id: '/notes/$noteId',
+  path: '/notes/$noteId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
@@ -119,6 +131,8 @@ export interface FileRoutesByFullPath {
   '/demo/storybook': typeof DemoStorybookRoute
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/notes/$noteId': typeof NotesNoteIdRoute
+  '/notes': typeof NotesIndexRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
@@ -137,6 +151,8 @@ export interface FileRoutesByTo {
   '/demo/storybook': typeof DemoStorybookRoute
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/notes/$noteId': typeof NotesNoteIdRoute
+  '/notes': typeof NotesIndexRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
@@ -156,6 +172,8 @@ export interface FileRoutesById {
   '/demo/storybook': typeof DemoStorybookRoute
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/notes/$noteId': typeof NotesNoteIdRoute
+  '/notes/': typeof NotesIndexRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
@@ -176,6 +194,8 @@ export interface FileRouteTypes {
     | '/demo/storybook'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/notes/$noteId'
+    | '/notes'
     | '/api/rpc/$'
     | '/demo/form/address'
     | '/demo/form/simple'
@@ -194,6 +214,8 @@ export interface FileRouteTypes {
     | '/demo/storybook'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/notes/$noteId'
+    | '/notes'
     | '/api/rpc/$'
     | '/demo/form/address'
     | '/demo/form/simple'
@@ -212,6 +234,8 @@ export interface FileRouteTypes {
     | '/demo/storybook'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/notes/$noteId'
+    | '/notes/'
     | '/api/rpc/$'
     | '/demo/form/address'
     | '/demo/form/simple'
@@ -231,6 +255,8 @@ export interface RootRouteChildren {
   DemoStorybookRoute: typeof DemoStorybookRoute
   DemoTableRoute: typeof DemoTableRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
+  NotesNoteIdRoute: typeof NotesNoteIdRoute
+  NotesIndexRoute: typeof NotesIndexRoute
   ApiRpcSplatRoute: typeof ApiRpcSplatRoute
   DemoFormAddressRoute: typeof DemoFormAddressRoute
   DemoFormSimpleRoute: typeof DemoFormSimpleRoute
@@ -245,6 +271,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notes/': {
+      id: '/notes/'
+      path: '/notes'
+      fullPath: '/notes'
+      preLoaderRoute: typeof NotesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notes/$noteId': {
+      id: '/notes/$noteId'
+      path: '/notes/$noteId'
+      fullPath: '/notes/$noteId'
+      preLoaderRoute: typeof NotesNoteIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/tanstack-query': {
@@ -367,6 +407,8 @@ const rootRouteChildren: RootRouteChildren = {
   DemoStorybookRoute: DemoStorybookRoute,
   DemoTableRoute: DemoTableRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
+  NotesNoteIdRoute: NotesNoteIdRoute,
+  NotesIndexRoute: NotesIndexRoute,
   ApiRpcSplatRoute: ApiRpcSplatRoute,
   DemoFormAddressRoute: DemoFormAddressRoute,
   DemoFormSimpleRoute: DemoFormSimpleRoute,
